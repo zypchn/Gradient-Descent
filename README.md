@@ -6,11 +6,15 @@ Gradient Descent is an optimisation algorithm which helps you find the optimal w
 A "model" is basically a matematical hypothesis with parameters as coefficents and data points as variables. An example of a very simple model:
 ![image](https://github.com/zypchn/Gradient-Descent/assets/144728809/be3cc096-2706-4dfd-a0a5-f8b4eed39435)
 
-Cost function can be defined as the difference between the actual output and the predicted output. Below is an example of a cost function, namely mean squared error:
+Cost function can be defined as the difference between the actual output and the predicted output. Below is an example of a cost function mean squared error, but with a slight change:
 
 ![Screenshot 2024-03-31 134755](https://github.com/zypchn/Gradient-Descent/assets/144728809/03e27d46-793c-4a63-aa6a-0e7d5ea16262)
 
-The aim of this project is to write a linear regression algoritm. Contrary to what is usually done, we will write our own cost function as well as our own Gradient Descent algorithm; instead of using the algorithms already available on several machine learning libraries. We used mean squared error for our cost function (a common approach), which can be seen above.
+Gradient descent uses the partial derivatives of cost function and an arbitrary value called learning rate to update parameters. Image down below shows two functions: partial derivative of cost functin *J* with respect to *θ0* and partial derivative of cost function *J* with respect to *θ1*.
+
+![Screenshot 2024-04-01 100614](https://github.com/zypchn/Gradient-Descent/assets/144728809/795b70f7-9880-4579-8853-939203f94fa9)
+
+The aim of this project is to write a linear regression algoritm. Contrary to what is usually done, we will write our own cost function as well as our own Gradient Descent algorithm; instead of using the algorithms already available on several machine learning libraries. We used a slightly changed mean squared error for our cost function (a common approach), which can be seen above.
 
 
 ## Methods
@@ -24,5 +28,7 @@ Then, we created our weights and bias using *np.random.randn()* and *rd.random()
 With weights and bias initialized, we then wrote the *predict()* function with 3 parameters:
 *x* (features), *w* (weights) and *b* (bias). The function makes predictions by computing the dot product (using *np.dot()*) of *x* and *w* and adding bias the the result. With *predict()* method written, we created a new data called **y_pred**.
 
-Next step was to write our own cost function. Instead of using *mean_squared_error* from *sklearn.metrics* we wrote our own. Their difference is that our cost function divides the sum to *2*m*, whereas *mean_squared_error* only divides to *m*.
+Next step was to write our own cost function. Instead of using *mean_squared_error* from *sklearn.metrics* we wrote our own. Their difference is that our cost function divides the sum to *2×m*, whereas *mean_squared_error* only divides to *m*. We then computed our cost with our own function.
 
+For our own gradient descent algorithm we first wrote our own update function for parameters, namely *update_params()* method. Since Python does not offer a derivative function itself, we had to write the result of the derivative. What that means is that if we change our cost function, we also have to change our *update_params()* method, since it is not a generic method for all cost functions. We wrote our method exactly as shown above on the *Introduction* part (image no: 3). It takes 6 parameters: *X*, *y*, *y_pred*, *theta*, *bias* and *lr*. First 5 parameters were already initialized and explained above. As for learning rate the definition is: a tuning parameter in an optimization algorithm (gradient descent in our case) that determines the step size at each iteration while moving toward a minimum of a loss function.
+It is also important to choose the optimal learning rate. If the learning rate is set too high, the model may update the weight too drastically, leading to overshooting the optimal values, but a too low learning rate will either take too long to converge or get stuck in an undesirable local minimum, wheras our goal is to find the global minimum. A common apporach is to use negative powers of 10 multiplied by a coefficent, for example 3e-5 means 0.00003.
