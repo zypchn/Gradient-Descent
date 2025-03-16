@@ -4,7 +4,7 @@
 ## Introduction 
 Gradient Descent is an optimisation algorithm which helps you find the optimal weights for your model. It does it by trying various weights and finding the weights which fit the models best (minimises the cost function). Lets's breakdown this statement.
 
-A "model" is basically a matematical hypothesis with parameters as coefficents and data points as variables. An example of a very simple model:
+A "model" is basically a matematical hypothesis with parameters as coefficents and data points as variables. An example of a very simple model: <br/>
 ![image](https://github.com/zypchn/Gradient-Descent/assets/144728809/be3cc096-2706-4dfd-a0a5-f8b4eed39435)
 
 Cost function can be defined as the difference between the actual output and the predicted output. Below is an example of a cost function mean squared error, but with a slight change:
